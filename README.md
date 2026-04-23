@@ -212,7 +212,8 @@ With the exception of the linear effect of precipitation (which was addressed th
 | **Relative Humidity** | -0.0244 |  0.001 | **< 0.001**| -0.027 | -0.022|
 | **Total Cloud Cover** |  0.0008    |  0  |  **0.001** |  0 |  0.001  |
 
-<br><br>
+<br>
+
 ---
 <details>
 <summary><b>🔍 Show detailed regression results</b></summary>
