@@ -108,7 +108,7 @@ Category | Tools / Libraries | Key Application |
 | :--- | :--- | :--- |
 | **Language** | Python 3.13.5 | Data pipeline & statistical modeling |
 | **Turnout Data Sourcing** | Playwright  | Custom JSON-configurable web scraper |
-| **Weather Data** | Copernicus ```CERRA```, cdsapi | High-resolution atmospheric reanalysis |
+| **Weather Data** | Copernicus CERRA, cdsapi | High-resolution atmospheric reanalysis |
 | **Geospatial** | Geopandas, Xarray, SciPy (KDTree) | Mapping grid points to municipality centroids |
 | **Data Wrangling**| Pandas, NumPy, RapidFuzz | Cleaning 157k+ observations & ETL |
 | **Modeling** | Statsmodels | Multivariate regression & Causal inference |
@@ -211,6 +211,7 @@ With the exception of the linear effect of precipitation (which was addressed th
 | **Wind Gusts** | -0.0912  |  0.004    |**< 0.001**| -0.099  | -0.084 |   
 | **Relative Humidity** | -0.0244 |  0.001 | **< 0.001**| -0.027 | -0.022|
 | **Total Cloud Cover** |  0.0008    |  0  |  **0.001** |  0 |  0.001  |
+
 <br><br>
 ---
 <details>
