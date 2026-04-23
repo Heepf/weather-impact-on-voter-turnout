@@ -1,0 +1,658 @@
+{  
+    "2025_PREZ": {
+
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://prezydent2025.pkw.gov.pl/prezydent2025/pl/frekwencja/12/pl",
+                "round" : 1,
+                "date" :"2025-05-18 12:00:00"
+            },
+            {
+                "url" : "https://prezydent2025.pkw.gov.pl/prezydent2025/pl/frekwencja/17/pl",
+                "round" : 1,
+                "date" : "2025-05-18 17:00:00"
+            },
+            {
+                "url" : "https://prezydent2025.pkw.gov.pl/prezydent2025/pl/frekwencja/Koniec/pl",
+                "round" : 1,
+                "date" : "2025-05-18 21:00:00"
+            },
+
+            {
+                "url" : "https://prezydent2025.pkw.gov.pl/prezydent2025/pl/2/frekwencja/12/pl",
+                "round" : 2,
+                "date" :"2025-06-01 12:00:00"
+            },
+            {
+                "url" : "https://prezydent2025.pkw.gov.pl/prezydent2025/pl/2/frekwencja/17/pl",
+                "round" : 2,
+                "date" : "2025-06-01 17:00:00"
+            },
+            {
+                "url" : "https://prezydent2025.pkw.gov.pl/prezydent2025/pl/2/frekwencja/Koniec/pl",
+                "round" : 2,
+                "date" : "2025-06-01 21:00:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : ".//div[contains(@class, 'elements') and contains(@class, 'paski') and contains(@class, 'table-responsive') and contains(@class, 'last-md')]/div/div[2]/div/table/tbody/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[1]/a",
+        "ROW_TO_TERYT_XPATH": ".",
+        "ROW_TO_TURNOUT_XPATH": "/td[4]/div/div[contains(@class, 'val')]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "/td[7]/div/div[contains(@class, 'val')]",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"",
+
+        "MPPS_HAVE_NO_SUBPAGE" : false,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : true,
+        "ROW_ATTRIBUTE_PATH" : ".",
+        "TERYT_ATTRIBUTE" : "data-id",
+
+        "URL_ATTRIBUTE" : "href",
+
+        "MPP_IF_CONTAINS" : [],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "PL_PREZ",
+        "OUTPUT_FILE_NAME": "2025_PEREZ"
+    },
+
+    "2024_PE": {
+
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://pe2024.pkw.gov.pl/pe2024/pl/frekwencja/12/pl",
+                "round" : null,
+                "date" :"2024-06-09 12:00:00"
+            },
+            {
+                "url" : "https://pe2024.pkw.gov.pl/pe2024/pl/frekwencja/17/pl",
+                "round" : null,
+                "date" : "2024-06-09 17:00:00"
+            },
+            {
+                "url" : "https://pe2024.pkw.gov.pl/pe2024/pl/frekwencja/Koniec/pl",
+                "round" : null,
+                "date" : "2024-06-09 21:00:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : ".//div[contains(@class, 'elements') and contains(@class, 'paski') and contains(@class, 'table-responsive') and contains(@class, 'last-xs')]/div/div[2]/div/table/tbody/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[1]/a",
+        "ROW_TO_TERYT_XPATH": ".",
+        "ROW_TO_TURNOUT_XPATH": "/td[4]/div/div[contains(@class, 'val')]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "/td[7]/div/div[contains(@class, 'val')]",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"",
+
+        "MPPS_HAVE_NO_SUBPAGE" : false,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : true,
+        "ROW_ATTRIBUTE_PATH" : ".",
+        "TERYT_ATTRIBUTE" : "data-id",
+
+        "URL_ATTRIBUTE" : "href",
+
+        "MPP_IF_CONTAINS" : [],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "EU_PE",
+        "OUTPUT_FILE_NAME": "2024_PE"
+    },
+
+    "2019_PARL": {
+        
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://sejmsenat2019.pkw.gov.pl/sejmsenat2019/pl/frekwencja/12/pl/adm",
+                "round" : null,
+                "date" : "2019-10-13 12:00:00"
+            },
+            {
+                "url" : "https://sejmsenat2019.pkw.gov.pl/sejmsenat2019/pl/frekwencja/17/pl/adm",
+                "round" : null,
+                "date" : "2019-10-13 17:00:00"
+            },
+            {
+                "url" : "https://sejmsenat2019.pkw.gov.pl/sejmsenat2019/pl/frekwencja/Koniec/sejm/pl/adm",
+                "round" : null,
+                "date" : "2019-10-13 21:00:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : ".//div[contains(@class, 'list') and contains(@class, 'paski') and contains(@class, 'col-xs-12') and contains(@class, 'col-sm-6') and contains(@class, 'col-md-7')]/div/div/table/tbody/tr",
+
+        "ROW_TO_HREF_XPATH" : "/ancestor::div[contains(@class, 'kw') and contains(@class, 'row')]/div[1]/div[2]//*[local-name()='a']",
+        "ROW_TO_TERYT_XPATH": ".",
+        "ROW_TO_TURNOUT_XPATH": "/td[2]/div[1]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "/td[2]/div[1]",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"",
+
+        "MPPS_HAVE_NO_SUBPAGE" : true,
+        "IS_URL_CHILD_OF_ROWS" : false,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : true,
+        "ROW_ATTRIBUTE_PATH" : ".",
+        "TERYT_ATTRIBUTE" : "data-id",
+
+        "URL_ATTRIBUTE" : "xlink:href",
+
+        "MPP_IF_CONTAINS" : [],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "PL_PARL",
+        "OUTPUT_FILE_NAME": "2019_PARL"
+        
+    },
+
+    "2019_PE": {
+        
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://pe2019.pkw.gov.pl/pe2019/pl/frekwencja/12/pl",
+                "round" : null,
+                "date" : "2019-05-26 12:00:00"
+            },
+            {
+                "url" : "https://pe2019.pkw.gov.pl/pe2019/pl/frekwencja/17/pl",
+                "round" : null,
+                "date" : "2019-05-26 17:00:00"
+            },
+            {
+                "url" : "https://pe2019.pkw.gov.pl/pe2019/pl/frekwencja/Koniec/pl",
+                "round" : null,
+                "date" : "2019-05-26 21:00:00"
+            }
+            
+        ],
+            
+        "PAGE_TO_ROW_XPATH" : ".//div[contains(@class, 'adm') and contains(@class, 'paski')]//table/tbody/tr",
+
+        "ROW_TO_HREF_XPATH" : "/ancestor::div[contains(@class, 'att')]/div[contains(@class, 'kw') and contains(@class, 'row')]/div[1]//*[local-name()='a']",
+        "ROW_TO_TERYT_XPATH": ".",
+        "ROW_TO_TURNOUT_XPATH": "/td[5]/div[contains(@class, 'val')]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "/td[7]/div[contains(@class, 'val')]",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"/td[2]",
+
+        "MPPS_HAVE_NO_SUBPAGE" : false,
+        "IS_URL_CHILD_OF_ROWS" : false,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : true,
+        "ROW_ATTRIBUTE_PATH" : ".",
+        "TERYT_ATTRIBUTE" : "data-id",
+
+        "URL_ATTRIBUTE" : "xlink:href",
+
+        "MPP_IF_CONTAINS" : [],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "EU_PE",
+        "OUTPUT_FILE_NAME": "2019_PE"
+    },
+    "2015_PREZ": {
+        
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://prezydent2015.pkw.gov.pl/317_Frekwencja/000000/1.html",
+                "round" : 1,
+                "date" : "2015-05-10 12:00:00"
+            },
+            {
+                "url" : "https://prezydent2015.pkw.gov.pl/317_Frekwencja/000000/2.html",
+                "round" : 1,
+                "date" : "2015-05-10 17:00:00"
+            },
+            {
+                "url" : "https://prezydent2015.pkw.gov.pl/317_Frekwencja/000000/3.html",
+                "round" : 1,
+                "date" : "2015-05-10 21:00:00"
+            },
+            {
+                "url" : "https://prezydent2015.pkw.gov.pl/324_Frekwencja/000000/1.html",
+                "round" : 2,
+                "date" : "2015-05-24 12:00:00"
+            },
+            {
+                "url" : "https://prezydent2015.pkw.gov.pl/324_Frekwencja/000000/2.html",
+                "round" : 2,
+                "date" : "2015-05-24 17:00:00"
+            },
+            {
+                "url" : "https://prezydent2015.pkw.gov.pl/324_Frekwencja/000000/3.html",
+                "round" : 2,
+                "date" : "2015-05-24 21:00:00"
+            }
+            
+        ],
+            
+        "PAGE_TO_ROW_XPATH" : ".//div[contains(@id, 'wyniki1_tabela_frek')]/div/table/tbody/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[2]/a",
+        "ROW_TO_TERYT_XPATH": "/td[1]",
+        "ROW_TO_TURNOUT_XPATH": "/td[5]/table/tbody/tr/td[2]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"/td[2]",
+
+        "MPPS_HAVE_NO_SUBPAGE" : false,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : false,
+        "ROW_ATTRIBUTE_PATH" : ".",
+        "TERYT_ATTRIBUTE" : "",
+
+        "URL_ATTRIBUTE" : "href",
+
+        "MPP_IF_CONTAINS" : [],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "PL_PREZ",
+        "OUTPUT_FILE_NAME": "2015_PREZ"
+        
+    },
+
+    "2015_PARL": {
+        
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://parlament2015.pkw.gov.pl/Frekwencja/0/1.html",
+                "round" : null,
+                "date" : "2015-10-25 12:00:00"
+            },
+            {
+                "url" : "https://parlament2015.pkw.gov.pl/Frekwencja/0/2.html",
+                "round" : null,
+                "date" : "2015-10-25 17:00:00"
+            },
+            {
+                "url" : "https://parlament2015.pkw.gov.pl/Frekwencja/0/3.html",
+                "round" : null,
+                "date" : "2015-10-25 21:00:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : ".//div[contains(@id, 'wyniki1_tabela_frek')]/div/table/tbody/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[2]/a",
+        "ROW_TO_TERYT_XPATH": "/td[1]",
+        "ROW_TO_TURNOUT_XPATH": "/td[5]/table/tbody/tr/td[2]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"/td[2]",
+
+        "MPPS_HAVE_NO_SUBPAGE" : false,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : false,
+        "ROW_ATTRIBUTE_PATH" : ".",
+        "TERYT_ATTRIBUTE" : "",
+
+        "URL_ATTRIBUTE" : "href",
+        
+        "MPP_IF_CONTAINS" : [],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "PL_PARL",
+        "OUTPUT_FILE_NAME": "2015_PARL"
+        
+    },
+
+    "2014_PE_2": {
+
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://pe2014.pkw.gov.pl/pl/index.html",
+                "round" : null,
+                "date" : "2014-05-25 21:00:00"
+            }       
+        ],
+
+        "PAGE_TO_ROW_XPATH" : ".//table[contains(@id, 'tablesorter33')]/tbody/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[1]/a",
+        "ROW_TO_TERYT_XPATH": "/td[1]",
+        "ROW_TO_TURNOUT_XPATH": "/td[5]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "",
+        
+        "GATHER_NAMES_AS_TERYT" : true,
+        "ROW_TO_NAME_XPATH" :"/td[1]",
+
+        "MPPS_HAVE_NO_SUBPAGE" : false,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : false,
+        "ROW_ATTRIBUTE_PATH" : "/td[1]/a",
+        "TERYT_ATTRIBUTE" : "href",
+
+        "URL_ATTRIBUTE" : "href",
+
+        "MPP_IF_CONTAINS" : [],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "EU_PE",
+        "OUTPUT_FILE_NAME": "PE_2014_2"
+    },
+
+    "2014_PE_1": {
+
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://pe2014.pkw.gov.pl/pl/frekwencja/wojewodztwa/index/12_00.html",
+                "round" : null,
+                "date" : "2014-05-25 12:00:00"
+            },
+            {
+                "url" : "https://pe2014.pkw.gov.pl/pl/frekwencja/wojewodztwa/index/17_30.html",
+                "round" : null,
+                "date" : "2014-05-25 17:30:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : ".//div[contains(@id, 'content')]/div[2]/table/tbody/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[1]/a",
+        "ROW_TO_TERYT_XPATH": "/td[1]",
+        "ROW_TO_TURNOUT_XPATH": "/td[7]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "",
+        
+        "GATHER_NAMES_AS_TERYT" : true,
+        "ROW_TO_NAME_XPATH" :"/td[1]",
+
+        "MPPS_HAVE_NO_SUBPAGE" : true,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : false,
+        "ROW_ATTRIBUTE_PATH" : "",
+        "TERYT_ATTRIBUTE" : "",
+
+        "URL_ATTRIBUTE" : "href",
+
+        "MPP_IF_CONTAINS" : [],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "EU_PE",
+        "OUTPUT_FILE_NAME": "PE_2014_1"
+    },
+
+     "2011_PARL": {
+        
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://wybory2011.pkw.gov.pl/att/pl/000000.html#tabs-3",
+                "round" : null,
+                "date" : "2011-10-09 09:00:00"
+            },
+            {
+                "url" : "https://wybory2011.pkw.gov.pl/att/pl/000000.html#tabs-4",
+                "round" : null,
+                "date" : "2011-10-09 14:00:00"
+            },
+            {
+                "url" : "https://wybory2011.pkw.gov.pl/att/pl/000000.html#tabs-5",
+                "round" : null,
+                "date" : "2011-10-09 18:00:00"
+            },
+            {
+                "url" : "https://wybory2011.pkw.gov.pl/att/pl/000000.html#tabs-1",
+                "round" : null,
+                "date" : "2011-10-09 21:00:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : "//div[contains(@class, 'w940') and contains(@style, 'overflow: auto')]//div[contains(@class, 'section')][position() = 1 or position() = 2]//tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[position()=2 or position()=3][.//a][1]/a",
+        "ROW_TO_TERYT_XPATH": "/td[2]",
+        "ROW_TO_TURNOUT_XPATH": "/td[8]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"/td[3]",
+
+        "MPPS_HAVE_NO_SUBPAGE" : true,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : false,
+        "ROW_ATTRIBUTE_PATH" : "",
+        "TERYT_ATTRIBUTE" : "",
+
+        "URL_ATTRIBUTE" : "href",
+        
+        "MPP_IF_CONTAINS" : ["npp"],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica", "Frekwencja", "Liczba wyborców", "które przekazały dane", "miasto", "wieś", "obszar miejsko-wiejski"],
+
+        "ELECTION_TYPE": "PL_PARL",
+        "OUTPUT_FILE_NAME": "2011_PARL"
+        
+    },
+
+     "2009_PE": {
+        
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://pe2009.pkw.gov.pl/PUE/PL/WYN/F1/index.htm",
+                "round" : null,
+                "date" : "2009-06-07 12:00:00"
+            },
+            {
+                "url" : "https://pe2009.pkw.gov.pl/PUE/PL/WYN/F2/index.htm",
+                "round" : null,
+                "date" : "2009-06-07 18:00:00"
+            },
+            {
+                "url" : "https://pe2009.pkw.gov.pl/PUE/PL/WYN/F/index.htm",
+                "round" : null,
+                "date" : "2009-06-07 21:00:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : "//tr[contains(@id, 'mainrow')]/td/table/tbody/tr[2]/td/table[1]/tbody[2]/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[2]/a",
+        "ROW_TO_TERYT_XPATH": "/td[1]",
+        "ROW_TO_TURNOUT_XPATH": "/td[7]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"/td[2]",
+
+        "MPPS_HAVE_NO_SUBPAGE" : true,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : false,
+        "ROW_ATTRIBUTE_PATH" : "",
+        "TERYT_ATTRIBUTE" : "",
+
+        "URL_ATTRIBUTE" : "href",
+
+        "MPP_IF_CONTAINS" : ["m."],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica", "Σ"],
+
+        "ELECTION_TYPE": "EU_PE",
+        "OUTPUT_FILE_NAME": "2009_PE"
+
+        
+    },
+
+     "2007_PARL": {
+        
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://wybory2007.pkw.gov.pl/SJM/PL/WYN/F1/index.htm",
+                "round" : null,
+                "date" : "2007-10-21 10:30:00"
+            },
+            {
+                "url" : "https://wybory2007.pkw.gov.pl/SJM/PL/WYN/F2/index.htm",
+                "round" : null,
+                "date" : "2007-10-21 16:30:00"
+            },
+            {
+                "url" : "https://wybory2007.pkw.gov.pl/SJM/PL/WYN/F/index.htm",
+                "round" : null,
+                "date" : "2007-10-21 21:00:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : "//tr[contains(@id, 'mainrow')]/td/table/tbody/tr[2]/td/table/tbody[2]/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[2]/a",
+        "ROW_TO_TERYT_XPATH": "/td[1]",
+        "ROW_TO_TURNOUT_XPATH": "/td[7]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"/td[2]",
+
+        "MPPS_HAVE_NO_SUBPAGE" : true,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : false,
+        "ROW_ATTRIBUTE_PATH" : "",
+        "TERYT_ATTRIBUTE" : "",
+
+        "URL_ATTRIBUTE" : "href",
+        
+        "MPP_IF_CONTAINS" : ["m."],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "PL_PARL",
+        "OUTPUT_FILE_NAME": "2007_PARL"
+
+        
+    },
+
+    "2005_PREZ": {
+        
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://wybory2005.pkw.gov.pl/PZT1/PL/WYN/F1/index.htm",
+                "round" : 1,
+                "date" : "2005-10-09 10:30:00"
+            },
+            {
+                "url" : "https://wybory2005.pkw.gov.pl/PZT1/PL/WYN/F2/index.htm",
+                "round" : 1,
+                "date" : "2005-10-09 16:30:00"
+            },
+            {
+                "url" : "https://wybory2005.pkw.gov.pl/PZT1/PL/WYN/F/index.htm",
+                "round" : 1,
+                "date" : "2005-10-09 21:00:00"
+            },
+
+            {
+                "url" : "https://wybory2005.pkw.gov.pl/PZT/PL/WYN/F1/index.htm",
+                "round" : 2,
+                "date" : "2005-10-23 10:30:00"
+            },
+            {
+                "url" : "https://wybory2005.pkw.gov.pl/PZT/PL/WYN/F2/index.htm",
+                "round" : 2,
+                "date" : "2005-10-23 16:30:00"
+            },
+            {
+                "url" : "https://wybory2005.pkw.gov.pl/PZT/PL/WYN/F/index.htm",
+                "round" : 2,
+                "date" : "2005-10-23 21:00:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : "//tr[contains(@id, 'mainrow')]/td/table/tbody/tr[2]/td/table/tbody[2]/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[2]/a",
+        "ROW_TO_TERYT_XPATH": "/td[1]",
+        "ROW_TO_TURNOUT_XPATH": "/td[7]",
+        "FINAL_ROW_TO_TURNOUT_XPATH": "",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"/td[2]",
+        
+        "MPPS_HAVE_NO_SUBPAGE" : true,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : false,
+        "ROW_ATTRIBUTE_PATH" : "",
+        "TERYT_ATTRIBUTE" : "",
+
+        "URL_ATTRIBUTE" : "href",
+
+        "MPP_IF_CONTAINS" : ["m."],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica"],
+
+        "ELECTION_TYPE": "PL_PREZ",
+        "OUTPUT_FILE_NAME": "2005_PREZ"
+
+    },
+
+    "2005_PARL": {
+        
+        "URLS_CONTEXT": [
+            {
+                "url" : "https://wybory2005.pkw.gov.pl/SJM/PL/WYN/F1/index.htm",
+                "round" : null,
+                "date" : "2005-09-25 10:30:00"
+            },
+            {
+                "url" : "https://wybory2005.pkw.gov.pl/SJM/PL/WYN/F2/index.htm",
+                "round" : null,
+                "date" : "2005-09-25 16:30:00"
+            },
+            {
+                "url" : "https://wybory2005.pkw.gov.pl/SJM/PL/WYN/F/index.htm",
+                "round" : null,
+                "date" : "2005-09-25 21:00:00"
+            }
+            
+        ],
+
+        "PAGE_TO_ROW_XPATH" : "//tr[contains(@id, 'mainrow')]/td/table/tbody/tr[2]/td/table/tbody[2]/tr",
+
+        "ROW_TO_HREF_XPATH" : "/td[2]/a",
+        "ROW_TO_TERYT_XPATH": "/td[1]",
+        "ROW_TO_TURNOUT_XPATH": "/td[7]",
+        "FINAL_ROW_TO_TURNOUT_XPATH" : "",
+
+        "GATHER_NAMES_AS_TERYT" : false,
+        "ROW_TO_NAME_XPATH" :"/td[2]",
+
+        "MPPS_HAVE_NO_SUBPAGE" : true,
+        "IS_URL_CHILD_OF_ROWS" : true,
+
+        "GATHER_TERYT_FROM_ATTRIBUTE" : false,
+        "ROW_ATTRIBUTE_PATH" : ".",
+        "TERYT_ATTRIBUTE" : ".",
+        
+        "URL_ATTRIBUTE" : "href",
+
+        "MPP_IF_CONTAINS" : ["m."],
+        "IGNORE_ROW_IF_CONTAINS" : ["Statki", "Zagranica", "Σ"],
+
+        "ELECTION_TYPE": "PL_PARL",
+        "OUTPUT_FILE_NAME": "2005_PARL"
+    }
+
+
+}
