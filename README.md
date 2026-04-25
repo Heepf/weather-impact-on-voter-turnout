@@ -20,10 +20,7 @@
 
 - **Multivariate Control:** The model takes into account other variables, such as the commune's unemployment rate, feminization coefficient, and population density.
 
-- **Data Insights:** Voter participation shows a rise with temperature and decline with precipitation. The thremal 'sweet spot' for turnout was identified at ```14.3°C```.
-
-- **Recommendations:** Since temperature has a greater impact on turnout than precipitation, it is advised to prioritze air-conditioned spaces and voters' access to fresh water.
-
+- **Insights & Recommendations:** The thermal "sweet spot" for turnout was identified at ```14.3°C```. Since the effect of temperature on voter participation outweighs that of precipitation, it is advised to prioritize air-conditioned polling stations and ensure access to fresh water, especially during heatwaves.
 
 ## Scraper code snippet
 
