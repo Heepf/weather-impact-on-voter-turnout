@@ -29,7 +29,7 @@
 <summary><b>🔍 View logic for edge-case handling and data cleaning  </b></summary>
 
 ```python
-def classify_row (row:Locator) -> bool:
+def is_row_mpp (row:Locator) -> bool:
     
     row_text = row.inner_text()
 
@@ -53,7 +53,7 @@ def classify_row (row:Locator) -> bool:
         teryt = row.locator(ensure_xpath(config.row_attribute_path)).get_attribute(config.teryt_attribute)
 
         if teryt is None:
-            raise ValueError(f"Teryt attribute is missing, {row}") 
+            raise ValueError(f"Teryt attribute is missing, {row}")
         else:
             match = re.search(r"(\d+)\D*$", teryt)
 
@@ -65,7 +65,7 @@ def classify_row (row:Locator) -> bool:
                     return True
                 else:
                     return False
-
+            
             else:
                 raise ValueError(f"Teryt not found in the attribute, {row}")
     return False

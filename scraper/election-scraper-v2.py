@@ -78,11 +78,11 @@ def run_scraper(playwright, config: ScraperConfig):
         main_page.goto(root_url, timeout = PAGE_TIMEOUT_MS)
         time.sleep(PAUSE_TIME)
         
-        # Find the rows on the main page
+        # Find rows on the main page
         province_url_loc = main_page.locator(ensure_xpath(f'{config.page_row_path}{config.row_href_path}'))   
         province_url_loc = validate_all_rows(province_url_loc, config.ignore_row_if_contains)
 
-        # Save the links to the province pages
+        # Save links to the province pages
         for url in province_url_loc.all():
             href_value = url.get_attribute(config.url_attribute)
             full_url = urljoin(root_url, href_value)
@@ -96,16 +96,16 @@ def run_scraper(playwright, config: ScraperConfig):
             main_page.goto(prov_url, timeout = PAGE_TIMEOUT_MS)
             time.sleep(PAUSE_TIME)
 
-            # Find the rows on the province pages
+            # Find rows on the province pages
             row_locator = main_page.locator(ensure_xpath(config.page_row_path))
             row_locator = validate_all_rows(row_locator, config.ignore_row_if_contains)
             
-            # Go into the commune level
+            # Iterate through each administrative unit (commune level)
             for k_index, prov_row in enumerate(row_locator.all()):
-                is_mpp = classify_row(prov_row)
+                is_mpp = is_row_mpp(prov_row)
                 print(f'Is MPP? {is_mpp}')
 
-                # Scrape the data
+                # Select scraping strategy based off of unit type
                 if is_mpp:
                     teryt, turnout = scrape_mpp(prov_row, is_final_turnout)
 
@@ -116,13 +116,15 @@ def run_scraper(playwright, config: ScraperConfig):
 
                     teryt, turnout = scrape_normally(context, county_link, is_final_turnout)
                 
-                # If TERYT doesn't exist, try to build a unique ID from the commune and province names.
+                # Fallback: Generate unique ID from names if TERYT codes are unavailable
+                # The code below does not scrape; it cleanes the provided ID by the code above
                 if config.gather_names_as_teryt:
                     prov_name = prov_row.locator(ensure_xpath(f'{config.row_name_path}')).inner_text()
 
-                    # If we are using town names as ID, we have to take into account that multiple communes are named the same.
-                    # We need to find a way to differentiate them by adding the county's name to the ID.
-                    # The solution below works, assuming that the urban commune row precedes the rural commune row.
+                    # We need to take into account that multiple communes can have same names.
+                    # Dfferentiate them by adding the county's name to the ID.
+                    # Assumption: Urban row precedes the rural row for the same location name.
+
                     teryt = [f'{prov_name};gm. {string}' for string in teryt]
 
                     for x in range(len(teryt)):
@@ -275,7 +277,7 @@ def scrape_teryt(row: Locator) -> str:
     return teryt_val
 
 
-def classify_row (row:Locator) -> bool:
+def is_row_mpp (row:Locator) -> bool:
     
     row_text = row.inner_text()
 
@@ -349,7 +351,7 @@ def validate_all_rows(to_validate: Locator, ignore_row_if_contains:list[str]) ->
     return to_validate
 
 
-# Ensure the xpath has a'xpath=' at the beginning.
+# Ensure the xpath has an 'xpath=' at the beginning.
 def ensure_xpath(path:str) -> str:
     if not path.startswith('xpath='):
         return f'xpath={path}'
