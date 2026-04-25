@@ -12,7 +12,7 @@
 - [Data Insights](#data-insights)
 
 ## Key Takeaways
-- **Massive Dataset:** 157,000+ observations covering every single commune and every single polish national election  between 2005 and 2025.
+- **Massive Dataset:** 157,000+ observations covering every single commune and every single polish national election between 2005 and 2025.
 
 - **The Main Challenge:** Developing a robust, ```JSON-configurable scraper```, designed to navigate changing DOM paths and various edge cases (e. g. county-level cities)
 
@@ -20,7 +20,9 @@
 
 - **Multivariate Control:** The model takes into account other variables, such as the commune's unemployment rate, feminization coefficient, and population density.
 
-- **Data Insights:** Voter participation shows a slight rise with temperature and decline with precipitation.
+- **Data Insights:** Voter participation shows a rise with temperature and decline with precipitation. The thremal 'sweet spot' for turnout was identified at ```14.3°C```.
+
+- **Recommendations:** Since temperature has a greater impact on turnout than precipitation, it is advised to prioritze air-conditioned spaces and voters' access to fresh water.
 
 
 ## Scraper code snippet
@@ -92,7 +94,7 @@ def scrape_turnout(row: Locator, is_final_turnout:bool) -> float:
 
 ## The Problem
 
-The question about impact of weather on voters is a classic problem of political science. Previous studies, such as ones in Bavaria[^arnold2018], Norway[^lind2014], Canada[^stockemer2018], or Switzerland[^meier2019], rely on obtaining data from meteorological stations. This approach has several downsides:
+The question about impact of weather on voters is a classic political science problem. Previous studies, such as the ones conducted in Bavaria[^arnold2018], Norway[^lind2014], Canada[^stockemer2018], or Switzerland[^meier2019], rely on obtaining data from meteorological stations. This approach has several downsides:
 
 - The observation posts are not evenly distributed. While some communes host multiple measuring sites, others lack them completely.
 
@@ -124,7 +126,7 @@ To increase the model’s sensitivity, I used ```intra-day (partial) turnout dat
 
 The voter participation data was sourced from the official ```National electoral Comission (PKW)``` archive.[^pkw_all] Because the intra-day data is only limited to the most recent elections (2020 onwards), a web scraping solution had to be used. Developing this scraper became the primary technical challenge of the project. The tool had to navigate various edge cases, the most notably ```county-level cities``` (Miasta na prawach powiatu – MPP), which often lacked dedicated subpages. This required the scraper to implement alternative retrieval logic. To ensure reliable operation, the system utilizes multiple MPP classification methods, which can be toggled on or off via a ```JSON``` configuration file.
 
-The data was primarily keyed using the commune’s ```TERYT``` code, a unique seven-digit number used by the Polish government to identify the administrative divisions. However, I excluded the last digit of this code, as it identifies the commune type (e.g. rural, urban), and is irrelevant to this specific analysis. Maintaining consistency of this format proved challenging due to inconsistencies across the data sources. For instance, some pages had ```TERYT``` codes stored in a table, others in an HTML attribute, and the 2014 EU elections website lacked them entirely. In that case, an alternative approach was implemented: the ID was constructed using the names of both the commune's and the district it belongs to.
+The data was primarily keyed using the commune’s ```TERYT``` code, a unique seven-digit number used by the Polish government to identify the administrative divisions. However, I excluded the last digit of this code, as it identifies the commune type (e.g. rural, urban), and is irrelevant to this specific analysis. Maintaining consistency of this format proved challenging due to inconsistencies across the data sources. For instance, some pages had ```TERYT``` codes stored in a table, others in an HTML attribute, while the 2014 EU elections website lacked them entirely. In that case, an alternative approach was implemented: the ID was constructed using the names of both the commune's and the district it belongs to.
 
 The atmospheric data was retrieved from the ```CERRA``` weather reanalysis model. It combines information from various sources - meteorological stations, satellite imagery, ships, and aircraft - to provide a more comprehensive record. This ensures a more robust input for the model. For instance, in Poland, a single monitoring site covers approximately 312km² (In reality this figure is understated, due to uneven spatial distribution and the fact that majority of the stations only collect precipitation data), while one ```CERRA``` pixel is a square with an area of 30.25km², providing ```10x higher spatial precision```. Although the main reanalysis is performed every 3 hours, the use of forecast allows for data collection at ```hourly intervals```. This approach allows for greater adaptability and more precise synchronization between weather and election participation data. This is crucial, because PKW reporting hours for partial turnout vary between years; For example, turnout was reported at 12:00 and 17:00 in 2023, while the intervals in 2011 were 9:00, 14:00 and 18:00. 
 
@@ -137,13 +139,13 @@ Data regarding socioeconomic variables, such as the feminization ratio or munici
 
 1. **Web Scraping**: Developed a custom web scraper to collect turnout data from every Polish national election across a 20-year period, resulting in a dataset of 157,000+ observations. The data was sourced from the Polish Electoral Comitee (PKW) website.[^pkw_all] The scraper and its JSON configuration file, is available in the [scraper](/scraper/) folder.
 
-2. **Entity Matching:** Linked all commune and district names with their official TERYT codes. The 2014 European election was a significant challenge, as the official PKW website for these elections did not provide the TERYT data (the standard primary key) To resolve this, I implemented an approach using the commune and district names as unique identifiers, employing ```RapidFuzz``` was used to handle naming inconsistencies. Code snippet for this step is located in the [pe_2014_teryt_merger.py](/code_snippets/pe_2014_teryt_merger.py).
+2. **Entity Matching:** Linked all commune and district names with their official TERYT codes. The 2014 European election was a significant challenge, as the official PKW website for these elections did not provide the TERYT data (the standard primary key). To resolve this, I implemented an approach using the commune and district names as unique identifiers, employing ```RapidFuzz``` to handle naming inconsistencies. Code snippet for this step is located in the [pe_2014_teryt_merger.py](/code_snippets/pe_2014_teryt_merger.py).
 
 3. **Geolocalisation:** Calculated commune centroids from GIS .shape files to enable precise spatial mapping of weather data.
 
-4. **Feature Engineering:** Integrated socioeconomic data from the GUS (Central Statistical Office) data, including unemployment rates, feminization ratios, NGOs per 10k people, population density and commune's own income per inhabitant. This step also involved cleaning raw datasets, aggregating age statistics, and merging them with the turnout data using TERYT codes as primary kes. The code snippets for this process are [GUS_turnout_data_merger.py](/code_snippets/GUS_turnout_data_merger.py) and [population_age_extractor.py](/code_snippets/population_age_extractor.py).
+4. **Feature Engineering:** Integrated socioeconomic variables from the GUS (Central Statistical Office) data, including unemployment rates, feminization ratios, NGOs per 10k people, population density and commune's own income per inhabitant. This step also involved cleaning raw datasets, aggregating age statistics, and merging them with the turnout data using TERYT codes as primary keys. The code snippets for this process are [GUS_turnout_data_merger.py](/code_snippets/GUS_turnout_data_merger.py) and [population_age_extractor.py](/code_snippets/population_age_extractor.py).
 
-5. **Weather Data Processing:** Retrieved weather data through the Copernicus API. Used the **Xarray** library to transform multidimensional arrays (NetCDF) into a structured .csv format, enabling the efficient handling of atmospheric data collected over the 21-year period.  
+5. **Weather Data Processing:** Retrieved weather data through the Copernicus API. Used the **Xarray** library to transform multidimensional arrays (NetCDF) into a structured .csv format, enabling the efficient handling of atmospheric data collected over the 20-year period.  
 
 6. **Weather Interpolation:** Implemented a ```k-Nearest Neighbours (kNN)``` machine learning algorithm to map weather values from grid points to commune centroid. I synchronized hourly atmospheric figures with the specific PKW turnout reporting windows. Code snippets for this step are available in [clean_transform_weather_data.py](/code_snippets/clean_transform_weather_data.py) and [merge_weather_data.py](/code_snippets/merge_weather_data.py).
 
@@ -197,7 +199,7 @@ The first step of the data analysis was the calculation of a correlation matrix 
 <br>
 
 
-The dependent variable used in the regression model is `turnout_delta`. This variable measures the incremental increase in voter turnout between PKW (National Electoral Commission) reporting windows. For instance, if the turnout is 15% at 12:00 PM, the `turnout_delta` for that period is exactly 15. However, if the turnout reaches 45% by the next reporting window at 5:00 PM, the `turnout_delta` for this subsequent interval will be 30 (45% - 15% = 30%).
+The dependent variable used in the regression model is `turnout_delta`. This variable measures the incremental increase in voter turnout between PKW (National Electoral Comission) reporting windows. For instance, if the turnout is 15% at 12:00 PM, the `turnout_delta` for that period is exactly 15. However, if the turnout reaches 45% by the next reporting window at 5:00 PM, the `turnout_delta` for this subsequent interval will be 30 (45% - 15% = 30%).
 
 With the exception of the linear effect of precipitation (which was addressed through non-linear transformations), all weather-related variables proved to be statistically significant:
 
@@ -288,7 +290,7 @@ The forest plot below presents the impact of weather variables on voter turnout:
 ![Forest_plot](./images/forestplot.png)
 <br><br>
 
-Temperature exerts a non-linear influence on voter mobilization. The positive impact on turnout flow peaks at ```14.3°C```, a “Goldilocks zone” for outdoor activity. Beyond this point, the effect begins to decay; at ```28.7°C```, the marginal impact returns to the same baseline as 0°C, suggesting that extreme heat proves to be as demobilizing as subzero temperatures. This phenomenon can be attributed to three factors: physical discomfort felt during extreme heat, the opportunity cost of voting, and the data itself. During exceptionally pleasant weather, act of voting has to compete with other, attractive outdoor alternatives, such as swimming or visiting a park. Furthermore, the results are bounded by temporal limitations of the dataset; since Polish national elections (2005–2025) typically occur in late spring or early autumn, the model's exposure to absolute temperature extremes is limited.
+Temperature exerts a non-linear influence on voter mobilization. The positive impact on turnout flow peaks at ```14.3°C```, a “Goldilocks zone” for outdoor activity. Beyond this point, the effect begins to decay; at ```28.7°C```, the marginal impact returns to the same baseline as 0°C, suggesting that extreme heat proves to be as demobilizing as subzero temperatures. This phenomenon can be attributed to three factors: physical discomfort felt during extreme heat, the opportunity cost of voting, and the data itself. During exceptionally pleasant weather, act of voting has to compete with other, attractive outdoor alternatives, such as swimming or visiting a park. Furthermore, the results are bounded by temporal limitations of the dataset; since Polish national elections (2005–2025) typically occur in late spring or early autumn, the model's exposure to more extreme temperatures is limited.
 
 Interestingly, temperature has a more profound effect on turnout than precipitation. This disparity likely comes from the underlying distribution of the data: temperature is a continuous variable with constant exposure, while precipitation is often zero. On top of that, while voters can mitigate rain with an umbrella, extreme temperature is an environmental factor that is much harder to avoid. The chart below illustrates the quadratic relationship between temperature and scale of change in voter turnout:
 
@@ -298,13 +300,13 @@ Interestingly, temperature has a more profound effect on turnout than precipitat
 
 The model was built on the assumption that rainfall doesn't scale linearly. The intuition was that the initial millimeters of rainfall have a larger impact on voter turnout than subsequent amounts. This reflects a “first-drop shock” – the idea that the onset of rain acts as primary psychological deterrent, while additional intensity has a diminishing effect. Effectively, once a voter is discouraged by the weather, further increases in rainfall volume do not change their behavior, as they have already decided to stay home.
 
-Statistical analysis confirms this intuition, as the square root term in the regression model is highly significant (p <0.001), while the linear term is insignificant (p = 0.081). The model’s coefficients create a mathematical curiosity, where the effect theoretically returns to zero at approximately 250 mm of precipitation, and even turns positive the more intense the rainfall is. However, this ‘recovery’ is a functional artifact rather than a real-world observation, as such extreme rainfall level falls far outside the range of possible conditions. The chart below illustrates the relationship between precipitation and the resulting change in voter turnout: 
+Statistical analysis confirms this intuition, as the square root term in the regression model is highly significant (p < 0.001), while the linear term is insignificant (p = 0.081). The model’s coefficients create a mathematical curiosity, where the effect theoretically returns to zero at approximately 250 mm of precipitation, and even turns positive the more intense the rainfall is. However, this ‘recovery’ is a functional artifact rather than a real-world observation, as such extreme rainfall level falls far outside the range of possible conditions. The chart below illustrates the relationship between precipitation and the resulting change in voter turnout: 
 
 <br><br>
 ![Precipitation_plot](./images/precip_effect.png)
 <br><br>
 
-Since the impact of temperature on voter outweighs that of precipitation, the primary practical implication is the mitigation of the heat-induced demobilization. Prioritizing air-conditioned spaces - such as n schools or community centers - as polling stations is a key for increasing the total turnout. Additionally, local authorities could further mitigate the physical cost of voting during summer heatwaves by providing free water bottles for voters standing in line.
+Since the impact of temperature on voter outweighs that of precipitation, the primary practical implication is the mitigation of the heat-induced demobilization. Prioritizing air-conditioned spaces - such as schools or community centers - as polling stations is a key for increasing the total turnout. Additionally, local authorities could further mitigate the physical cost of voting during summer heatwaves by providing free water bottles for voters standing in line.
 
 
 <br>
